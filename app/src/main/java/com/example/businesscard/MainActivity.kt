@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,8 +21,7 @@ import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -47,11 +45,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BusinessCardTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    BusinessCard()
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    BusinessCard(
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
@@ -59,11 +56,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BusinessCard() {
+fun BusinessCard(
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
+        modifier = modifier
+            .fillMaxSize()
             .background(Color(0xFF073042)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -76,9 +74,7 @@ fun BusinessCard() {
                 .width(150.dp)
         )
         TextLego(
-            text = stringResource(R.string.mohamed_amer),
-            color = Color.White,
-            fontSize = 32.sp
+            text = stringResource(R.string.mohamed_amer), color = Color.White, fontSize = 32.sp
         )
         TextLego(
             text = stringResource(R.string.android_developer),
@@ -92,21 +88,25 @@ fun BusinessCard() {
 
         ContactRow(text = stringResource(R.string.androiddev), icon = Icons.Rounded.Share)
 
-        ContactRow(
-            text = stringResource(R.string.mohamedamerjalal_android_com),
-            icon = Icons.Rounded.Email
-        )
+        ContactRow(text = stringResource(R.string.mohamedamerjalal), icon = Icons.Rounded.Email)
     }
 }
 
 @Composable
-fun TextLego(text: String, color: Color, fontSize: TextUnit) {
-    Text(text = text, color = color, fontSize = fontSize)
+fun TextLego(
+    text: String,
+    modifier: Modifier = Modifier,
+    color: Color = Color.White,
+    fontSize: TextUnit = TextUnit.Unspecified
+) {
+    Text(text = text, color = color, fontSize = fontSize, modifier = modifier)
 }
 
 @Composable
 fun ContactRow(text: String, icon: ImageVector) {
-    HorizontalDivider(modifier = Modifier.fillMaxWidth(), color = Color(0xFF526E7B))
+    HorizontalDivider(
+        modifier = Modifier.fillMaxWidth(), color = Color(0xFF526E7B)
+    )
 
     Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.padding(16.dp)) {
         Icon(
@@ -115,14 +115,15 @@ fun ContactRow(text: String, icon: ImageVector) {
             tint = Green,
             modifier = Modifier.weight(1f)
         )
-        Text(text = text, color = Color.White, modifier = Modifier
-            .weight(3f)
-            .blur(0.dp)
+        TextLego(
+            text = text, color = Color.White, modifier = Modifier
+                .weight(3f)
+                .blur(0.dp)
         )
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun BusinessCardPreview() {
     BusinessCardTheme {
