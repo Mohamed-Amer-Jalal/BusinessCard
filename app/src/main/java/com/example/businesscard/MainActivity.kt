@@ -96,7 +96,7 @@ fun BusinessCard(
 fun TextLego(
     text: String,
     modifier: Modifier = Modifier,
-    color: Color = Color.White,
+    color: Color = Color.Unspecified,
     fontSize: TextUnit = TextUnit.Unspecified
 ) {
     Text(text = text, color = color, fontSize = fontSize, modifier = modifier)
