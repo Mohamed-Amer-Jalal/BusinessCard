@@ -16,9 +16,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Call
-import androidx.compose.material.icons.rounded.Email
-import androidx.compose.material.icons.rounded.Share
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -84,11 +84,11 @@ fun BusinessCard(
 
         Spacer(modifier = Modifier.padding(bottom = 400.dp))
 
-        ContactRow(text = stringResource(R.string._20_100_9292_859), icon = Icons.Rounded.Call)
+        ContactRow(text = stringResource(R.string._20_100_9292_859), icon = Icons.Filled.Call)
 
-        ContactRow(text = stringResource(R.string.androiddev), icon = Icons.Rounded.Share)
+        ContactRow(text = stringResource(R.string.androiddev), icon = Icons.Filled.Share)
 
-        ContactRow(text = stringResource(R.string.mohamedamerjalal), icon = Icons.Rounded.Email)
+        ContactRow(text = stringResource(R.string.mohamedamerjalal), icon = Icons.Filled.Email)
     }
 }
 
@@ -105,9 +105,10 @@ fun TextLego(
 @Composable
 fun ContactRow(text: String, icon: ImageVector) {
     HorizontalDivider(
-        modifier = Modifier.fillMaxWidth(), color = Color(0xFF526E7B)
+        modifier = Modifier.fillMaxWidth(),
+        color = Color(0xFF526E7B),
+        thickness = 3.dp
     )
-
     Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.padding(16.dp)) {
         Icon(
             imageVector = icon,
