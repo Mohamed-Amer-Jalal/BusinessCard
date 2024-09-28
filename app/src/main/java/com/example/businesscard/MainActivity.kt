@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -61,7 +60,7 @@ fun BusinessCard(
 ) {
     Column(
         modifier = modifier
-            .fillMaxHeight()
+            .fillMaxSize()
             .background(Color(0xFF050B31)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -82,7 +81,7 @@ fun BusinessCard(
             fontSize = 20.sp
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 400.dp))
+        Spacer(modifier = Modifier.weight(1f))
 
         ContactRow(text = stringResource(R.string._20_100_9292_859), icon = Icons.Filled.Call)
 
@@ -119,7 +118,7 @@ fun ContactRow(text: String, icon: ImageVector) {
         TextLego(
             text = text, color = Color.White, modifier = Modifier
                 .weight(3f)
-                .blur(0.dp)
+                .blur(3.dp)
         )
     }
 }
